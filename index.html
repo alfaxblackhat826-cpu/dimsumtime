@@ -203,6 +203,187 @@
             return;
         }
         
+        let phoneNumber = "6282296260825"; // Ganti dengan nomor WhatsApp Anda
+        let text = "Halo Dimsum Time, saya mau pesan:\n\n";
+        cart.forEach((item, index) => {
+            text += `${index + 1}. ${item.name} - ${item.price}\n`;
+        });
+        
+        let url = `https://wa.me/${phoneNumber}?text=${encodeURIComponent(text)}`;
+        window.open(url, '_blank');
+    }
+</script>
+
+</body>
+</html>
+        .category-title {
+            color: var(--dark-orange);
+            border-left: 5px solid var(--primary-orange);
+            padding-left: 10px;
+            margin: 20px 0 10px;
+        }
+
+        .menu-grid {
+            display: grid;
+            grid-template-columns: 1fr 1fr;
+            gap: 15px;
+        }
+
+        .menu-card {
+            background: white;
+            border-radius: 15px;
+            overflow: hidden;
+            box-shadow: 0 4px 6px rgba(0,0,0,0.05);
+            display: flex;
+            flex-direction: column;
+        }
+
+        .menu-card img {
+            width: 100%;
+            height: 120px;
+            object-fit: cover;
+        }
+
+        .menu-info {
+            padding: 10px;
+            flex-grow: 1;
+        }
+
+        .menu-info h3 {
+            margin: 0;
+            font-size: 0.9rem;
+            color: #444;
+        }
+
+        .price {
+            color: var(--primary-orange);
+            font-weight: bold;
+            font-size: 1rem;
+            margin: 5px 0;
+        }
+
+        .qty-info {
+            font-size: 0.75rem;
+            color: #888;
+        }
+
+        .order-btn {
+            background: var(--primary-orange);
+            color: white;
+            border: none;
+            padding: 8px;
+            border-radius: 8px;
+            width: 100%;
+            margin-top: 10px;
+            cursor: pointer;
+            font-weight: bold;
+            font-size: 0.8rem;
+        }
+
+        .cart-float {
+            position: fixed;
+            bottom: 20px;
+            right: 20px;
+            background: #25d366;
+            color: white;
+            padding: 15px 25px;
+            border-radius: 50px;
+            text-decoration: none;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.2);
+            font-weight: bold;
+            display: flex;
+            align-items: center;
+        }
+    </style>
+</head>
+<body>
+
+<header>
+    <h1 style="margin:0;">Dimsum Time</h1>
+    <p style="margin:5px 0 0;">Daftar Menu Digital</p>
+</header>
+
+<div class="container">
+    
+    <h2 class="category-title">Dimsum Best Seller</h2>
+    <div class="menu-grid">
+        <!-- Item 1 -->
+        <div class="menu-card">
+            <img src="https://via.placeholder.com/150" alt="Dimsum Original">
+            <div class="menu-info">
+                <h3>Dimsum Original</h3>
+                <p class="qty-info">Isi 6</p>
+                <p class="price">20k</p>
+                <button class="order-btn" onclick="addToCart('Dimsum Original', '20k')">Tambah</button>
+            </div>
+        </div>
+        <!-- Item 2 -->
+        <div class="menu-card">
+            <img src="https://via.placeholder.com/150" alt="Dimsum Mentai">
+            <div class="menu-info">
+                <h3>Dimsum Mentai</h3>
+                <p class="qty-info">Isi 6</p>
+                <p class="price">25k</p>
+                <button class="order-btn" onclick="addToCart('Dimsum Mentai', '25k')">Tambah</button>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="category-title">Snacks & More</h2>
+    <div class="menu-grid">
+        <div class="menu-card">
+            <img src="https://via.placeholder.com/150" alt="Ayam Keju">
+            <div class="menu-info">
+                <h3>Ayam Keju</h3>
+                <p class="qty-info">Isi 5</p>
+                <p class="price">20k</p>
+                <button class="order-btn" onclick="addToCart('Ayam Keju', '20k')">Tambah</button>
+            </div>
+        </div>
+        <div class="menu-card">
+            <img src="https://via.placeholder.com/150" alt="Burger Chicken">
+            <div class="menu-info">
+                <h3>Burger Chicken</h3>
+                <p class="qty-info">Per Pcs</p>
+                <p class="price">20k</p>
+                <button class="order-btn" onclick="addToCart('Burger Chicken', '20k')">Tambah</button>
+            </div>
+        </div>
+    </div>
+
+    <h2 class="category-title">Birthday Packages</h2>
+    <div class="menu-grid">
+        <div class="menu-card">
+            <img src="https://via.placeholder.com/150" alt="Dimsum Birthday">
+            <div class="menu-info">
+                <h3>B'Day Tower</h3>
+                <p class="qty-info">Isi 30</p>
+                <p class="price">190k</p>
+                <button class="order-btn" onclick="addToCart('Dimsum Birthday Tower', '190k')">Tambah</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<a href="#" class="cart-float" id="whatsappLink" onclick="sendOrder()">
+    Pesat ke WhatsApp (<span id="cartCount">0</span>)
+</a>
+
+<script>
+    let cart = [];
+
+    function addToCart(name, price) {
+        cart.push({name, price});
+        document.getElementById('cartCount').innerText = cart.length;
+        alert(name + " ditambahkan ke keranjang!");
+    }
+
+    function sendOrder() {
+        if(cart.length === 0) {
+            alert("Keranjang masih kosong!");
+            return;
+        }
+        
         let phoneNumber = "628123456789"; // Ganti dengan nomor WhatsApp Anda
         let text = "Halo Dimsum Time, saya mau pesan:\n\n";
         cart.forEach((item, index) => {
